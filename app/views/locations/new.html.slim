@@ -23,11 +23,33 @@ javascript:
     const options = { center: new google.maps.LatLng(56.66400, 32.23959), zoom: 3 };
     const map = new google.maps.Map(document.getElementById('map'), options);
     const locations = #{raw @arr_with_locations};
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
     for (i = 0; i < locations.length; i++) {
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][0], locations[i][1]),
         map: map
       });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          var latitude = locations[i][0].toString();
+          var longitude = locations[i][1].toString();
+          infowindow.setContent(
+            '<div id="content" class="text-center">'+
+            'Latitude: '+
+            latitude+
+            '<br/>'+
+            'Longitude: '+
+            longitude+
+            '</div>'
+          );
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
     }
   }
   google.maps.event.addDomListener(window, 'load', googleMap);
