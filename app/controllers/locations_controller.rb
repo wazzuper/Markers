@@ -1,12 +1,7 @@
 class LocationsController < ApplicationController
   def new
     @location = Location.new
-
-    locations = Location.all
-    @arr_with_locations = []
-    locations.each do |location|
-      @arr_with_locations << [location.latitude, location.longitude]
-    end
+    @arr_with_locations = Location.return_array_with_latitude_and_longitude
   end
 
   def create
