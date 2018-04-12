@@ -4,6 +4,8 @@
       .card
         .card-body
           #map style="width: 100%; height: 400px;"
+          br/
+          = link_to 'Generated URL with your coordinates', "http://maps.google.com/maps?q=loc:#{@location.latitude},#{@location.longitude}"
           hr/
           = link_to 'Back', root_path, data: { turbolinks: false }, class: 'btn btn-primary btn-block'
 

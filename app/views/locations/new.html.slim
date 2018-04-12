@@ -40,11 +40,11 @@ javascript:
           var longitude = locations[i][1].toString();
           infowindow.setContent(
             '<div id="content" class="text-center">'+
-            'Latitude: '+
-            latitude+
+            'Latitude: '+latitude+
             '<br/>'+
-            'Longitude: '+
-            longitude+
+            'Longitude: '+longitude+
+            '<br/>'+
+            '<a href="http://maps.google.com/maps?q=loc:'+latitude+','+longitude+'" target="_blank">Generated URL</a>'+
             '</div>'
           );
           infowindow.open(map, marker);
